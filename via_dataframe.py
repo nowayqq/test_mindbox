@@ -2,7 +2,6 @@ import pandas as pd
 from sum_dig import sum_of_digits
 
 
-# реализация через pandas
 def group_score(df):
 
     return df.groupby('group').count()
