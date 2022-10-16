@@ -1,23 +1,18 @@
-import numpy as np
 import pandas as pd
+from sum_dig import sum_of_digits
 
 
-def sum_of_digits (num):
+# реализация через pandas
+def group_score(df):
 
-    summ = 0
-
-    while num > 0:
-        digit = num % 10
-        summ += digit
-        num //= 10
-
-    return summ
+    return df.groupby('group').count()
 
 
 data = pd.read_csv('data.csv')
 data['group'] = 0
 
 for i in range(len(data.ID)):
-    data['group'][i] = sum_of_digits(data['ID'][i])
+    data.loc[:, 'group'][i] = sum_of_digits(data.loc[:, 'ID'][i])
 
 print(data)
+print(group_score(data))
