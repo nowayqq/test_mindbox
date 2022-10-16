@@ -1,8 +1,19 @@
 import pandas as pd
-from sum_dig import sum_of_digits
 
 
 # реализация через pandas
+def sum_of_digits(num):
+
+    summ = 0
+
+    while num > 0:
+        digit = num % 10
+        summ += digit
+        num //= 10
+
+    return summ
+
+
 def group_score(df):
 
     return df.groupby('group').count()
