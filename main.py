@@ -1,8 +1,8 @@
-import numpy as np
 import pandas as pd
 
 
-def sum_of_digits (num):
+# реализация через pandas
+def sum_of_digits(num):
 
     summ = 0
 
@@ -14,10 +14,16 @@ def sum_of_digits (num):
     return summ
 
 
+def group_score(df):
+
+    return df.groupby('group').count()
+
+
 data = pd.read_csv('data.csv')
 data['group'] = 0
 
 for i in range(len(data.ID)):
-    data['group'][i] = sum_of_digits(data['ID'][i])
+    data.loc[:, 'group'][i] = sum_of_digits(data.loc[:, 'ID'][i])
 
 print(data)
+print(group_score(data))
